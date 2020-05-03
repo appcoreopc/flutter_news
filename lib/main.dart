@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
-import 'newscategories/newscategories.dart';
+import 'features/newscategories/newscategories.dart';
+import 'appconstant.dart' as AppConstant;
 
-void main() => runApp(MyApp());
+void main() => runApp(NewsReaderApp());
 
-class MyApp extends StatelessWidget {
+class NewsReaderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      title: 'News Reader',
-      theme: ThemeData(          
-        primaryColor: Colors.lightBlue,
-      ), 
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('News Reader'),
+        title: AppConstant.ApplicationName,
+        theme: ThemeData(
+          primaryColor: Colors.black,
         ),
-        body: Center(
-          child: NewsCategories(),
-        ),
-      ),
-    );
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text(AppConstant.ApplicationName),
+            ),
+            body: SafeArea(child: Center(child: NewsCategories()))));
   }
 }
-
-

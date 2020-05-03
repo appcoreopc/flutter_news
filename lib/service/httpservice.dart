@@ -4,15 +4,20 @@ import 'package:http/http.dart' as http;
 import '../appconstant.dart' as AppConstant;
 import '../models/newscategorymodel.dart';
 
-Future<List<NewsCategoryModel>> fetchNewsCategories() async {
-  final response = await http.get(AppConstant.newsUrl);
-  var result = List<NewsCategoryModel>();
+class NewsDataService {
+  Future<List<Article>> fetchNewsCategories() async {
+    
+    final response = await http.get(AppConstant.newsUrl);
+    var result = List<Article>();
 
-  if (response.statusCode == 200) {
-    List<NewsCategoryModel> newscategories = json.decode(response.body);
-    for (var newcategory in newscategories) {
-      result.add(newcategory);
+    if (response.statusCode == 200) {
+      var newscategories = json.decode(response.body);
+      var articles = newscategories['articles'];
+      for (var article in articles) {
+        result.add(Article(article['author'], article['title']));
+      }
     }
+    return result;
   }
-  return result;
 }
+
