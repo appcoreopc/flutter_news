@@ -22,9 +22,9 @@ class Article {
   // String publishedAt; 
   String content;
   
-  Article(this.author, this.title);
+  Article(this.author, this.title, this.description, this.content, this.urlToImage);
 
-  factory Article.fromJson(Map<String, dynamic> json) {
-    return Article(json['author'], 'b');
-  }
+  // factory Article.fromJson(Map<String, dynamic> json) {
+  //   return Article(json['author'], 'b');
+  // }
 }
