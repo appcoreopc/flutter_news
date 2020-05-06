@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hello/models/newscategorymodel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../service/httpservice.dart';
-
 
 class NewsCategories extends StatefulWidget {
   @override
@@ -13,10 +11,9 @@ class NewsCategories extends StatefulWidget {
 
 class NewsCategoriesState extends State<NewsCategories> {
   Future<List<Article>> _futureNewsData;
-  
+
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
-
 
   final TextStyle _titleFont =
       TextStyle(fontSize: 20.0, color: Colors.black.withOpacity(0.8));
@@ -32,7 +29,6 @@ class NewsCategoriesState extends State<NewsCategories> {
 
   @override
   Widget build(BuildContext context) {
-
     _futureNewsData = NewsDataService().fetchNewsCategories();
 
     return Scaffold(
@@ -81,12 +77,10 @@ class NewsCategoriesState extends State<NewsCategories> {
   }
 
   void _pushNewsCategory(Article newsData) {
-
-
-    // Navigator.of(context).push(
-    //   MaterialPageRoute<void>(
-    //       builder: (BuildContext context) => DetailNewsPage(newsData)),
-    // );
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+          builder: (BuildContext context) => DetailNewsPage(newsData)),
+    );
   }
 }
 
@@ -99,43 +93,43 @@ class DetailNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_article.title),
-      ),
-      body: _buildNewsData(_article),
-    );
-  }
-
-  Widget _buildNewsData(Article newsData) {
-    return _buildRow(newsData);
-  }
-
-  Widget _buildRow(Article newsData) {
-    final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              title: Text(newsData.title, overflow: TextOverflow.clip),
-            ),
-            Expanded(child: Text(newsData.content)),
-            ButtonBar(
-              children: <Widget>[
-                FlatButton(
-                  child: Text('BUY TICKETS'),
-                  onPressed: () {/* ... */},
-                ),
-                FlatButton(
-                  child: Text('LISTEN'),
-                  onPressed: () {/* ... */},
-                ),
-              ],
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(_article.title),
         ),
-      ),
-    );
+        //body: _buildNewsData(_article),
+        body: WebView(initialUrl: _article.url));
   }
+
+  // Widget _buildNewsData(Article newsData) {
+  //   return _buildRow(newsData);
+  // }
+
+  // Widget _buildRow(Article newsData) {
+  //   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
+  //   return Center(
+  //     child: Card(
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: <Widget>[
+  //           ListTile(
+  //             title: Text(newsData.title, overflow: TextOverflow.clip),
+  //           ),
+  //           Expanded(child: Text(newsData.content)),
+  //           ButtonBar(
+  //             children: <Widget>[
+  //               FlatButton(
+  //                 child: Text('BUY TICKETS'),
+  //                 onPressed: () {/* ... */},
+  //               ),
+  //               FlatButton(
+  //                 child: Text('LISTEN'),
+  //                 onPressed: () {/* ... */},
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  //}
 }

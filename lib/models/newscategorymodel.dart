@@ -19,10 +19,9 @@ class Article {
   String description; 
   String url; 
   String urlToImage;
-  // String publishedAt; 
   String content;
   
-  Article(this.author, this.title, this.description, this.content, this.urlToImage);
+  Article(this.author, this.title, this.description, this.content, this.urlToImage, this.url);
 
   // factory Article.fromJson(Map<String, dynamic> json) {
   //   return Article(json['author'], 'b');
