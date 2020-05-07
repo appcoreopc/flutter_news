@@ -14,7 +14,8 @@ class NewsDataService {
       var newscategories = json.decode(response.body);
       var articles = newscategories['articles'];
       for (var article in articles) {
-        result.add(Article(article['author'], article['title'], article['description'], article['content'], article['imageUrl'], article['url']));
+
+        result.add(Article(article['author'], article['title'], article['description'], article['content'], article['urlToImage'], article['url']));
       }
     }
     return result;

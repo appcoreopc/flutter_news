@@ -16,10 +16,10 @@ class NewsCategoriesState extends State<NewsCategories> {
       Completer<WebViewController>();
 
   final TextStyle _titleFont =
-      TextStyle(fontSize: 20.0, color: Colors.black.withOpacity(0.8));
+      TextStyle(fontSize: 15.0, color: Colors.black.withOpacity(0.8));
 
   final TextStyle _contentFont =
-      TextStyle(fontSize: 16.0, color: Colors.black.withOpacity(0.8));
+      TextStyle(fontSize: 15.0, color: Colors.black.withOpacity(0.8));
 
   @override
   void initState() {
@@ -63,7 +63,8 @@ class NewsCategoriesState extends State<NewsCategories> {
         title: Text(newsData.title, style: _titleFont),
         subtitle: Padding(
             padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
-            child: Text(newsData.content, style: _contentFont)),
+            //child: Text(newsData.content, style: _contentFont)),
+            child: Image.network(newsData.urlToImage)),
         trailing: Icon(
           Icons.arrow_forward,
           color: Colors.white,
@@ -96,40 +97,6 @@ class DetailNewsPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(_article.title),
         ),
-        //body: _buildNewsData(_article),
         body: WebView(initialUrl: _article.url));
   }
-
-  // Widget _buildNewsData(Article newsData) {
-  //   return _buildRow(newsData);
-  // }
-
-  // Widget _buildRow(Article newsData) {
-  //   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
-  //   return Center(
-  //     child: Card(
-  //       child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: <Widget>[
-  //           ListTile(
-  //             title: Text(newsData.title, overflow: TextOverflow.clip),
-  //           ),
-  //           Expanded(child: Text(newsData.content)),
-  //           ButtonBar(
-  //             children: <Widget>[
-  //               FlatButton(
-  //                 child: Text('BUY TICKETS'),
-  //                 onPressed: () {/* ... */},
-  //               ),
-  //               FlatButton(
-  //                 child: Text('LISTEN'),
-  //                 onPressed: () {/* ... */},
-  //               ),
-  //             ],
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  //}
 }
