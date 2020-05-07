@@ -12,13 +12,7 @@ class NewsCategories extends StatefulWidget {
 class NewsCategoriesState extends State<NewsCategories> {
   Future<List<Article>> _futureNewsData;
 
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-
   final TextStyle _titleFont =
-      TextStyle(fontSize: 15.0, color: Colors.black.withOpacity(0.8));
-
-  final TextStyle _contentFont =
       TextStyle(fontSize: 15.0, color: Colors.black.withOpacity(0.8));
 
   @override
@@ -29,7 +23,6 @@ class NewsCategoriesState extends State<NewsCategories> {
 
   @override
   Widget build(BuildContext context) {
-    _futureNewsData = NewsDataService().fetchNewsCategories();
 
     return Scaffold(
         body: FutureBuilder<List<Article>>(
@@ -63,7 +56,6 @@ class NewsCategoriesState extends State<NewsCategories> {
         title: Text(newsData.title, style: _titleFont),
         subtitle: Padding(
             padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
-            //child: Text(newsData.content, style: _contentFont)),
             child: Image.network(newsData.urlToImage)),
         trailing: Icon(
           Icons.arrow_forward,
@@ -78,6 +70,7 @@ class NewsCategoriesState extends State<NewsCategories> {
   }
 
   void _pushNewsCategory(Article newsData) {
+    
     Navigator.of(context).push(
       MaterialPageRoute<void>(
           builder: (BuildContext context) => DetailNewsPage(newsData)),
@@ -87,8 +80,7 @@ class NewsCategoriesState extends State<NewsCategories> {
 
 class DetailNewsPage extends StatelessWidget {
   Article _article;
-  final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
-
+  
   DetailNewsPage(this._article);
 
   @override
